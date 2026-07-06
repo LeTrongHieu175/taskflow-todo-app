@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="taskflow-favicon-title">
+  <title id="taskflow-favicon-title">TaskFlow icon</title>
+  <defs>
+    <linearGradient id="taskflow-favicon-bg" x1="8%" y1="8%" x2="92%" y2="92%">
+      <stop offset="0%" stop-color="#38bdf8" />
+      <stop offset="100%" stop-color="#c084fc" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="18" fill="#0f172a" />
+  <rect x="14" y="14" width="28" height="18" rx="7" fill="#dbeafe" opacity="0.82" />
+  <rect x="19" y="21" width="28" height="18" rx="7" fill="#bfdbfe" opacity="0.62" />
+  <rect x="24" y="28" width="24" height="18" rx="7" fill="url(#taskflow-favicon-bg)" />
+  <path d="M30 37.5 34 41.5 42 32.5" fill="none" stroke="#f8fafc" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" />
+</svg>

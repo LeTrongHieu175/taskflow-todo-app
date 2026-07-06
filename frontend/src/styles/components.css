@@ -43,6 +43,53 @@
   gap: 0.85rem;
 }
 
+.brand-lockup {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand-copy {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.brand-copy .eyebrow {
+  margin-bottom: 0;
+}
+
+.brand-logo {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.35), rgba(192, 132, 252, 0.35));
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.28);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.brand-logo svg {
+  width: 74%;
+  height: 74%;
+  display: block;
+}
+
+.brand-logo-md {
+  width: 48px;
+  height: 48px;
+  border-radius: 16px;
+}
+
+.brand-logo-lg {
+  width: 56px;
+  height: 56px;
+}
+
 .hero-topline {
   display: flex;
   flex-wrap: wrap;

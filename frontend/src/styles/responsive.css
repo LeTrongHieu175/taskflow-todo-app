@@ -49,6 +49,10 @@
     align-items: stretch;
   }
 
+  .brand-lockup {
+    align-items: flex-start;
+  }
+
   .stats-grid {
     grid-template-columns: 1fr 1fr;
   }

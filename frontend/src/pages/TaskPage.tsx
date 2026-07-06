@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { ApiError } from '../api/taskApi';
 import { ConfirmDialog } from '../components/ConfirmDialog';
 import { LoadingSkeleton } from '../components/LoadingSkeleton';
+import { Logo } from '../components/Logo';
 import { Pagination } from '../components/Pagination';
 import { TaskCard } from '../components/TaskCard';
 import { TaskFilter } from '../components/TaskFilter';
@@ -246,8 +247,13 @@ export function TaskPage() {
               <span className="hero-badge">Personal Productivity Dashboard</span>
               <span className="hero-date">{currentDateLabel}</span>
             </div>
-            <p className="eyebrow">Daily command center</p>
-            <h1>TaskFlow</h1>
+            <div className="brand-lockup">
+              <Logo />
+              <div className="brand-copy">
+                <p className="eyebrow">Daily command center</p>
+                <h1>TaskFlow</h1>
+              </div>
+            </div>
             <p className="hero-description">
               Organize your tasks with clarity, priority, and flow.
             </p>
