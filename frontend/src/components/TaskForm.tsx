@@ -101,6 +101,7 @@ export function TaskForm({ isOpen, task, isSubmitting, onClose, onSubmit }: Task
           <div>
             <p className="eyebrow">{task ? 'Edit task' : 'New task'}</p>
             <h2 id="task-form-title">{task ? 'Update task details' : 'Create a new task'}</h2>
+            <p className="modal-subtitle">Capture the right priority, timing, and context without leaving the dashboard.</p>
           </div>
           <button type="button" className="ghost-icon-button" onClick={onClose} aria-label="Close form">
             ×

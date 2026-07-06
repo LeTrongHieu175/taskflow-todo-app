@@ -35,6 +35,7 @@ export function ConfirmDialog({
           </div>
         </div>
         <p className="confirm-copy">{description}</p>
+        <div className="confirm-note">This action cannot be undone.</div>
         <div className="modal-actions">
           <button type="button" className="secondary-button" onClick={onCancel}>
             Cancel

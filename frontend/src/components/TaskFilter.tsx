@@ -38,8 +38,11 @@ export function TaskFilter({
   return (
     <section className="filter-panel">
       <div className="filter-panel-copy">
-        <p className="eyebrow">Task controls</p>
-        <h2>Search, filter, and prioritize your work</h2>
+        <div className="filter-heading">
+          <p className="eyebrow">Task controls</p>
+          <h2>Search, filter, and prioritize your work</h2>
+        </div>
+        <p className="filter-heading-copy">Quick views and fine-grained filters stay aligned with your current task flow.</p>
       </div>
 
       <div className="quick-filter-row" aria-label="Quick filters">

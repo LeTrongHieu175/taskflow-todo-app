@@ -46,6 +46,7 @@ export function Pagination({ page, totalPages, totalItems, pageSize, onPageChang
               type="button"
               className={`page-number ${pageNumber === page ? 'page-number-active' : ''}`}
               onClick={() => onPageChange(pageNumber)}
+              aria-current={pageNumber === page ? 'page' : undefined}
             >
               {pageNumber}
             </button>

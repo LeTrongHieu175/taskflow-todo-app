@@ -19,7 +19,7 @@ export function Toast({ toast, onClose }: ToastProps) {
 
   return (
     <div className={`toast ${toast.type === 'success' ? 'toast-success' : 'toast-error'}`}>
-      <div>
+      <div className="toast-body">
         <strong>{toast.type === 'success' ? 'Success' : 'Error'}</strong>
         <p>{toast.message}</p>
       </div>

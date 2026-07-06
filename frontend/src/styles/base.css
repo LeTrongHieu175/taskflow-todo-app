@@ -1,0 +1,204 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--text-primary);
+  background:
+    radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.22), transparent 24%),
+    radial-gradient(circle at 85% 12%, rgba(192, 132, 252, 0.18), transparent 22%),
+    radial-gradient(circle at 82% 78%, rgba(59, 130, 246, 0.18), transparent 20%),
+    linear-gradient(135deg, var(--bg-start) 0%, var(--bg-mid) 54%, var(--bg-end) 100%);
+  background-attachment: fixed;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid rgba(56, 189, 248, 0.32);
+  outline-offset: 2px;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  min-height: 3rem;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-control);
+  background: rgba(15, 23, 42, 0.36);
+  color: var(--text-primary);
+  padding: 0.9rem 1rem;
+  transition:
+    transform var(--motion-base),
+    border-color var(--motion-base),
+    box-shadow var(--motion-base),
+    background var(--motion-base);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(226, 232, 240, 0.42);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: rgba(56, 189, 248, 0.54);
+  box-shadow: 0 0 0 4px rgba(56, 189, 248, 0.14);
+  background: rgba(15, 23, 42, 0.48);
+}
+
+select {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, rgba(248, 250, 252, 0.76) 50%),
+    linear-gradient(135deg, rgba(248, 250, 252, 0.76) 50%, transparent 50%);
+  background-position:
+    calc(100% - 20px) calc(50% - 3px),
+    calc(100% - 14px) calc(50% - 3px);
+  background-size: 6px 6px, 6px 6px;
+  background-repeat: no-repeat;
+  padding-right: 2.5rem;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.glass-panel {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  border-radius: var(--radius-panel);
+}
+
+.glass-card {
+  background: var(--glass-bg-strong);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.app-shell {
+  position: relative;
+  overflow: hidden;
+  animation: page-fade 420ms ease;
+}
+
+.app-shell::before,
+.app-shell::after {
+  content: "";
+  position: fixed;
+  width: 34rem;
+  height: 34rem;
+  border-radius: 999px;
+  filter: blur(36px);
+  pointer-events: none;
+  opacity: 0.46;
+  z-index: 0;
+}
+
+.app-shell::before {
+  top: -10rem;
+  left: -9rem;
+  background: rgba(56, 189, 248, 0.34);
+}
+
+.app-shell::after {
+  right: -12rem;
+  bottom: -8rem;
+  background: rgba(192, 132, 252, 0.24);
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  width: min(1200px, calc(100% - 2rem));
+  margin: 0 auto;
+  padding: 2.5rem 0 4rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin: 0 0 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: rgba(191, 219, 254, 0.86);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 0.65rem;
+  height: 0.65rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.45);
+}
+
+.background-orb {
+  display: none;
+}
+
+@keyframes page-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@supports not ((backdrop-filter: blur(18px)) or (-webkit-backdrop-filter: blur(18px))) {
+  .glass-panel,
+  .glass-card,
+  .hero,
+  .stats-grid article,
+  .progress-card,
+  .filter-panel,
+  .task-section,
+  .task-card,
+  .modal-card,
+  .confirm-card,
+  .toast,
+  .page-number,
+  .secondary-button,
+  .ghost-icon-button {
+    background: rgba(15, 23, 42, 0.88);
+  }
+}

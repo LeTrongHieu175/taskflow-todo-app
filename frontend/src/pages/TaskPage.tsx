@@ -11,6 +11,7 @@ import { useTasks } from '../hooks/useTasks';
 import type { TaskFormValues, TaskItem, TaskQuickFilter, ToastMessage } from '../types/task';
 
 interface EmptyStateContent {
+  icon: string;
   title: string;
   description: string;
   actionLabel?: string;
@@ -26,6 +27,7 @@ function getEmptyStateContent(
 ): EmptyStateContent {
   if (totalTasks === 0) {
     return {
+      icon: '✦',
       title: 'Your task list is empty',
       description: 'Create your first task to start organizing your day.',
       actionLabel: 'Add your first task',
@@ -36,6 +38,7 @@ function getEmptyStateContent(
   switch (activeQuickFilter) {
     case 'overdue':
       return {
+        icon: '✓',
         title: 'Great! You have no overdue tasks.',
         description: 'Everything due so far is under control. Keep the momentum going.',
         actionLabel: 'View all tasks',
@@ -43,6 +46,7 @@ function getEmptyStateContent(
       };
     case 'completed':
       return {
+        icon: '◎',
         title: 'No completed tasks yet.',
         description: 'Complete a task to track your progress.',
         actionLabel: 'View all tasks',
@@ -50,6 +54,7 @@ function getEmptyStateContent(
       };
     case 'today':
       return {
+        icon: '☼',
         title: 'No tasks due today.',
         description: 'You can plan ahead or create a new task.',
         actionLabel: 'Create a task',
@@ -58,6 +63,7 @@ function getEmptyStateContent(
     default:
       if (hasActiveFilters) {
         return {
+          icon: '⌕',
           title: 'No matching tasks found.',
           description: 'Try another keyword or clear filters.',
           actionLabel: 'Clear filters',
@@ -66,6 +72,7 @@ function getEmptyStateContent(
       }
 
       return {
+        icon: '○',
         title: 'No tasks found.',
         description: 'Create a task to start building your workflow.',
         actionLabel: 'Add task',
@@ -204,13 +211,20 @@ export function TaskPage() {
     : Math.round((summary.completedTasks / summary.totalTasks) * 100);
 
   const statCards = [
-    { label: 'Total Tasks', value: summary.totalTasks, accentClass: 'stat-card-total' },
-    { label: 'Pending Tasks', value: summary.pendingTasks, accentClass: 'stat-card-pending' },
-    { label: 'Completed Tasks', value: summary.completedTasks, accentClass: 'stat-card-completed' },
-    { label: 'High Priority Tasks', value: summary.highPriorityTasks, accentClass: 'stat-card-high' },
-    { label: 'Overdue Tasks', value: summary.overdueTasks, accentClass: 'stat-card-overdue' },
-    { label: 'Due Today Tasks', value: summary.dueTodayTasks, accentClass: 'stat-card-today' },
+    { label: 'Total Tasks', value: summary.totalTasks, accentClass: 'stat-card-total', icon: '◫' },
+    { label: 'Pending Tasks', value: summary.pendingTasks, accentClass: 'stat-card-pending', icon: '◔' },
+    { label: 'Completed Tasks', value: summary.completedTasks, accentClass: 'stat-card-completed', icon: '✓' },
+    { label: 'High Priority Tasks', value: summary.highPriorityTasks, accentClass: 'stat-card-high', icon: '!' },
+    { label: 'Overdue Tasks', value: summary.overdueTasks, accentClass: 'stat-card-overdue', icon: '⏱' },
+    { label: 'Due Today Tasks', value: summary.dueTodayTasks, accentClass: 'stat-card-today', icon: '☼' },
   ];
+
+  const currentDateLabel = new Intl.DateTimeFormat('en-US', {
+    weekday: 'short',
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  }).format(new Date());
 
   const emptyStateContent = getEmptyStateContent(
     summary.totalTasks,
@@ -228,10 +242,14 @@ export function TaskPage() {
       <main className="page">
         <section className="hero">
           <div className="hero-copy">
-            <p className="eyebrow">TaskFlow</p>
-            <h1>Personal task management app</h1>
+            <div className="hero-topline">
+              <span className="hero-badge">Personal Productivity Dashboard</span>
+              <span className="hero-date">{currentDateLabel}</span>
+            </div>
+            <p className="eyebrow">Daily command center</p>
+            <h1>TaskFlow</h1>
             <p className="hero-description">
-              Track priorities, deadlines, and progress in one focused workspace built for fast review and smooth daily task management.
+              Organize your tasks with clarity, priority, and flow.
             </p>
           </div>
 
@@ -239,8 +257,9 @@ export function TaskPage() {
             <div className="stats-grid">
               {statCards.map((card) => (
                 <article key={card.label} className={`stat-card ${card.accentClass}`}>
-                  <span>{card.label}</span>
+                  <span className="stat-icon" aria-hidden="true">{card.icon}</span>
                   <strong>{card.value}</strong>
+                  <span>{card.label}</span>
                 </article>
               ))}
             </div>
@@ -277,6 +296,7 @@ export function TaskPage() {
             <div>
               <p className="eyebrow">Task list</p>
               <h2>Keep work visible and actionable</h2>
+              <p className="section-subcopy">Review priorities, due dates, and progress without losing focus.</p>
             </div>
             <button type="button" className="secondary-button" onClick={() => void refresh()}>
               Refresh
@@ -287,6 +307,7 @@ export function TaskPage() {
 
           {!isLoading && tasks.length === 0 ? (
             <div className="empty-state">
+              <div className="empty-state-icon" aria-hidden="true">{emptyStateContent.icon}</div>
               <h3>{emptyStateContent.title}</h3>
               <p>{emptyStateContent.description}</p>
               {emptyStateContent.actionLabel && emptyStateContent.onAction ? (
