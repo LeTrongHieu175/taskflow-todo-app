@@ -1,0 +1,12 @@
+.DS_Store
+.env
+.dotnet/
+
+**/bin/
+**/obj/
+**/App_Data/
+
+frontend/node_modules/
+frontend/dist/
+
+backend/App_Data/
